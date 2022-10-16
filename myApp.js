@@ -61,7 +61,7 @@ app.post("/name", (req, res) => {
 app.get("/api/whoami", (req, res) => {
     const queryObject = req.headers;
     res.json({
-        ipaddress: req.socket.remoteAddress,
+        ipaddress: req.headers['x-forwarded-for'].split(',')[0],
         language : queryObject["accept-language"],
         software : queryObject["user-agent"]
     });
